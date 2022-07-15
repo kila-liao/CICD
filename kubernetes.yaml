@@ -17,5 +17,4 @@ spec:
     spec:
       containers:
       - name: "demoapp"
-        image: "gcr.io/My First Project/gcr-repo:latest"
-        imagePullPolicy: Always
+        image: "gcr.io/cogent-spring-355606/demoimage:latest"
