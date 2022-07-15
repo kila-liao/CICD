@@ -9,4 +9,5 @@ WORKDIR /usr/app
 COPY ./ /usr/app
 RUN npm install
 RUN ["npm", "test"]
+RUN npm run build
 RUN npm run start:prod
