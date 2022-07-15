@@ -7,4 +7,4 @@ RUN git clone https://github.com/kila-liao/CICD.git
 WORKDIR /usr/app
 COPY ./ /usr/app
 RUN npm install
-RUN npm run test
+CMD ["npm", "test"]
