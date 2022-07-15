@@ -3,8 +3,10 @@ RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash - && \
     yum -y install nodejs && \
     yum -y install git && \
     npm i -g @nestjs/cli
-RUN git clone https://github.com/kila-liao/CICD.git
+RUN git clone https://github.com/kila-liao/CICD.git -b $ENV
+RUN echo $ENV
 WORKDIR /usr/app
 COPY ./ /usr/app
 RUN npm install
-CMD ["npm", "test"]
+RUN ["npm", "test"]
+RUN npm run start:prod

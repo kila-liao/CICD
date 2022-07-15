@@ -2,7 +2,15 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'test',
+           'gcr.io/${PROJECT_ID}/demoimage:latest',
+           '--build-arg=ENV=$_BRANCH',
            '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['run', 'test']
+    args: ['push', 'gcr.io/${PROJECT_ID}/demoimage:latest']
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+    - run
+    - --filename=kubernetes.yaml
+    - --image=gcr.io/${PROJECT_ID}/demoimage:latest
+    - --location=asia-east1-b
+    - --cluster=demo-cluster
