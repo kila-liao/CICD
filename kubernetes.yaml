@@ -32,3 +32,4 @@ spec:
         image: "gcr.io/cogent-spring-355606/demoimage:latest"
         ports:
         - containerPort: 3000
+  revisionHistoryLimit: 3
