@@ -4,7 +4,7 @@ steps:
     args: ['build', '-t',
            'gcr.io/${PROJECT_ID}/demoimage:latest',
            '.',
-           '--build-arg', 'BRANCH_NAME=${BRANCH_NAME}']
+           '--build-args', 'BRANCH_NAME=${BRANCH_NAME}']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/${PROJECT_ID}/demoimage:latest']
   - name: "gcr.io/cloud-builders/gke-deploy"
