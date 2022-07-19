@@ -12,4 +12,5 @@ RUN npm install
 RUN ["npm", "test"]
 RUN npm run build
 ARG NODE_ENV
+RUN export NODE_ENV=$NODE_ENV
 CMD ["npm", "run", "start:prod"]
