@@ -10,20 +10,6 @@ spec:
       targetPort: 3000
   type: LoadBalancer
 ---
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: my-health-check
-spec:
-  healthCheck:
-    checkIntervalSec: 5
-    timeoutSec: 3
-    healthyThreshold: 2
-    unhealthyThreshold: 2
-    type: HTTP
-    requestPath: /
-    port: 3000
----
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
@@ -46,4 +32,13 @@ spec:
         image: "gcr.io/cogent-spring-355606/demoimage:latest"
         ports:
         - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3  
+          successThreshold: 2
+          failureThreshold: 2
   revisionHistoryLimit: 3
