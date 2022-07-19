@@ -1,6 +1,7 @@
 FROM centos:7
 ARG BRANCH_NAME
 ARG NODE_ENV
+RUN env
 RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash - && \
     yum -y install nodejs && \
     yum -y install git && \
