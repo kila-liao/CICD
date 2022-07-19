@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: "demoapp"
-        image: "gcr.io/${PROJECT_ID}/demoimage:latest"
+        image: "demoimage"
         ports:
         - containerPort: 3000
   revisionHistoryLimit: 3

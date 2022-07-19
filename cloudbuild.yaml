@@ -11,7 +11,6 @@ steps:
     args:
     - run
     - --filename=kubernetes.yaml
-    - --image=gcr.io/${PROJECT_ID}/demoimage:latest
+    - --image=demoimage=gcr.io/${PROJECT_ID}/demoimage:latest
     - --location=asia-east1-b
     - --cluster=demo-cluster
-    - --environment-variables PROJECT_ID=${PROJECT_ID}
