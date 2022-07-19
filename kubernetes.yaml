@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: "demoapp"
-        image: "gcr.io/cogent-spring-355606/demoimage:latest"
+        image: "gcr.io/${PROJECT_ID}/demoimage:latest"
         ports:
         - containerPort: 3000
   revisionHistoryLimit: 3

@@ -4,7 +4,7 @@ RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash - && \
     yum -y install git && \
     npm i -g @nestjs/cli
 RUN echo $ENV
-RUN git clone https://github.com/kila-liao/CICD.git
+RUN git clone https://github.com/kila-liao/CICD.git -b $BRANCH_NAME
 WORKDIR /usr/app
 COPY ./ /usr/app
 RUN npm install
