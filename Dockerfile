@@ -1,6 +1,5 @@
 FROM centos:7
 ARG BRANCH_NAME
-RUN env
 RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash - && \
     yum -y install nodejs && \
     yum -y install git && \
@@ -11,4 +10,7 @@ COPY ./ /usr/app
 RUN npm install
 RUN ["npm", "test"]
 RUN npm run build
+ARG NODE_ENV
+ENV NODE_ENV=${NODE_ENV}
+RUN echo $NODE_ENV
 CMD ["npm", "run", "start:prod"]
