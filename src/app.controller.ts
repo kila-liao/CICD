@@ -19,4 +19,9 @@ export class AppController {
     }
     return '';
   }
+
+  @Get('env')
+  getEnv() {
+    return process.env;
+  }
 }
