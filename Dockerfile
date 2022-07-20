@@ -10,7 +10,6 @@ RUN git clone https://github.com/kila-liao/CICD.git -b $BRANCH_NAME
 WORKDIR /usr/app
 COPY ./ /usr/app
 RUN npm install
-RUN npm i --save-dev @types/node
 #RUN ["npm", "test"]
 RUN npm run build
 CMD ["npm", "run", "start:prod"]
