@@ -1,4 +1,11 @@
-steps:
+ steps:
+   # Run test
+  - name: node
+    entrypoint: npm
+    args: ['install']
+  - name: node
+    entrypoint: npm
+    args: ['test']
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
@@ -6,8 +13,10 @@ steps:
            '.',
            '--build-arg', 'BRANCH_NAME=${BRANCH_NAME}',
            '--build-arg', 'NODE_ENV=${_NODE_ENV}']
+  # Docker push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/${PROJECT_ID}/demoimage:latest']
+  # Deploy to GKE
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
     - run
