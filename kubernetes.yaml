@@ -44,7 +44,7 @@ kind: Service
 metadata:
   name: demoapp
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80":"demo-backendconfig"}}'
+    cloud.google.com/backend-config: '{"default": "demo-backendconfig"}'
 spec:
   selector:
     app: demoapp
