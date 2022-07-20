@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: demoapp
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80":"demo-backendconfig"}}'
 spec:
   selector:
     app: demoapp
