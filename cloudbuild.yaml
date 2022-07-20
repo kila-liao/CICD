@@ -20,7 +20,7 @@
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
     - run
-    - --filename=kubernetes.yaml
+    #- --filename=kubernetes.yaml
     - --image=gcr.io/${PROJECT_ID}/demoimage:latest
     - --location=asia-east1-b
     - --cluster=demo-cluster
