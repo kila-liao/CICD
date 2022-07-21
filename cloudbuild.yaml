@@ -23,7 +23,7 @@
       [
         "deploy", "releases", "create", "rel-${SHORT_SHA}",
         "--delivery-pipeline", "demoapp",
-        "--region", "us-central1",
+        "--region", "asia-east1",
         "--annotations", "commitId=${REVISION_ID}",
         "--images", "IMAGE_NAME=gcr.io/$PROJECT_ID/IMAGE_NAME:${COMMIT_SHA}"
       ]
