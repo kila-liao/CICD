@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('prod')
 export class AppController {
   constructor(private readonly appService: AppService) { }
 
@@ -13,10 +13,10 @@ export class AppController {
 
   @Get('dead')
   getDead(): string {
-    let a = [];
-    for (let i = 0; i < 100000000000000000; i++) {
-      a.push(i);
-    }
+    // let a = [];
+    // for (let i = 0; i < 100000000000000000; i++) {
+    //   a.push(i);
+    // }
     return '';
   }
 
