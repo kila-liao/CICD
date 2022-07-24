@@ -17,10 +17,22 @@ export class AppController {
     return 'I am prod';
   }
 
+  @Get('prod/test')
+  getHelloProdTest(): string {
+    console.log('prod test');
+    return 'I am prod test';
+  }
+
   @Get('dev')
   getHelloDev(): string {
     console.log('health check dev');
     return 'I am dev';
+  }
+
+  @Get('dev/test')
+  getHelloDevTest(): string {
+    console.log('dev test');
+    return 'I am dev test';
   }
 
   @Get('dead')
