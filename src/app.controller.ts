@@ -11,6 +11,18 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @Get('prod')
+  getHelloProd(): string {
+    console.log('health check prod');
+    return 'I am prod';
+  }
+
+  @Get('dev')
+  getHelloDev(): string {
+    console.log('health check dev');
+    return 'I am dev';
+  }
+
   @Get('dead')
   getDead(): string {
     // let a = [];
