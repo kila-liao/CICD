@@ -20,7 +20,7 @@ export class AppController {
   @Get('prod/test')
   getHelloProdTest(): string {
     console.log('prod test');
-    return 'I am prod test1';
+    return 'I am prod test2';
   }
 
   @Get('dev')
@@ -32,7 +32,7 @@ export class AppController {
   @Get('dev/test')
   getHelloDevTest(): string {
     console.log('dev test');
-    return 'I am dev test1';
+    return 'I am dev test2';
   }
 
   @Get('dead')
