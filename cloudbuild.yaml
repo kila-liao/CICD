@@ -25,13 +25,13 @@
         "--delivery-pipeline", "demoapp",
         "--region", "asia-east1",
         "--annotations", "commitId=${REVISION_ID}",
-        "--images", "IMAGE_NAME=gcr.io/$PROJECT_ID/demoimage:${COMMIT_SHA}"
+        "--images", "demoimage=gcr.io/$PROJECT_ID/demoimage:${COMMIT_SHA}"
       ]
   #Deploy to GKE
   # - name: "gcr.io/cloud-builders/gke-deploy"
   #   args:
   #   - run
   #   - --filename=k8s/uat.yaml
-  #   - --image=gcr.io/${PROJECT_ID}/demoimage:latest
+  #   - --image=gcr.io/${PROJECT_ID}/demoimage:${COMMIT_SHA}"
   #   - --location=asia-east1-b
   #   - --cluster=demo-cluster
