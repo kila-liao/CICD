@@ -17,21 +17,21 @@
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/${PROJECT_ID}/demoimage:latest']
   # Create release in Google Cloud Deploy
-  # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  #   entrypoint: gcloud
-  #   args:
-  #     [
-  #       "deploy", "releases", "create", "rel-${SHORT_SHA}",
-  #       "--delivery-pipeline", "demoapp",
-  #       "--region", "asia-east1",
-  #       "--annotations", "commitId=${REVISION_ID}",
-  #       "--images", "IMAGE_NAME=gcr.io/$PROJECT_ID/IMAGE_NAME:${COMMIT_SHA}"
-  #     ]
-  #Deploy to GKE
-  - name: "gcr.io/cloud-builders/gke-deploy"
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
     args:
-    - run
-    - --filename=k8s/uat.yaml
-    - --image=gcr.io/${PROJECT_ID}/demoimage:latest
-    - --location=asia-east1-b
-    - --cluster=demo-cluster
+      [
+        "deploy", "releases", "create", "rel-${SHORT_SHA}",
+        "--delivery-pipeline", "demoapp",
+        "--region", "asia-east1",
+        "--annotations", "commitId=${REVISION_ID}",
+        "--images", "IMAGE_NAME=gcr.io/$PROJECT_ID/IMAGE_NAME:${COMMIT_SHA}"
+      ]
+  #Deploy to GKE
+  # - name: "gcr.io/cloud-builders/gke-deploy"
+  #   args:
+  #   - run
+  #   - --filename=k8s/uat.yaml
+  #   - --image=gcr.io/${PROJECT_ID}/demoimage:latest
+  #   - --location=asia-east1-b
+  #   - --cluster=demo-cluster
