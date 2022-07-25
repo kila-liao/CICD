@@ -1,0 +1,91 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "demoapp"
+  namespace: "default"
+  labels:
+    app: "demoapp"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "demoapp"
+  template:
+    metadata:
+      labels:
+        app: "demoapp"
+    spec:
+      containers:
+      - name: "demoapp"
+        image: "gcr.io/cogent-spring-355606/demoimage:latest"
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /prod
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3  
+          successThreshold: 1
+          failureThreshold: 2
+  revisionHistoryLimit: 3
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: demo-backendconfig
+spec:
+  cdn:
+    enabled: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoapp
+  annotations:
+    cloud.google.com/backend-config: '{"default": "demo-backendconfig"}'
+spec:
+  selector:
+    app: demoapp
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoapp-dev
+  annotations:
+    cloud.google.com/backend-config: '{"default": "demo-backendconfig"}'
+spec:
+  selector:
+    app: demoapp-dev
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /prod
+        pathType: Prefix
+        backend:
+          service:
+            name: demoapp
+            port:
+              number: 80
+      - path: /dev
+        pathType: Prefix
+        backend:
+          service:
+            name: demoapp-dev
+            port:
+              number: 80

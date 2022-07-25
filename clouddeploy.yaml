@@ -5,14 +5,26 @@ metadata:
 description: main application pipeline
 serialPipeline:
  stages:
- - targetId: demo-cluster
-   profiles: []
+ - targetId: demo-cluster-uat
+   profiles:
+   - uat
+ - targetId: demo-cluster-prod
+   profiles:
+   - prod 
 ---
 
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
- name: demo-cluster
+ name: demo-cluster-uat
 description: development cluster
+gke:
+ cluster: projects/cogent-spring-355606/locations/asia-east1-b/clusters/demo-cluster
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+ name: demo-cluster-prod
+description: production cluster
 gke:
  cluster: projects/cogent-spring-355606/locations/asia-east1-b/clusters/demo-cluster
