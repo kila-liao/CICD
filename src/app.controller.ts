@@ -1,5 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
+const winston = require('winston');
+import { LoggingWinston } from '@google-cloud/logging-winston';
 
 @Controller()
 export class AppController {
@@ -33,6 +35,22 @@ export class AppController {
   getHelloDevTest(): string {
     console.log('dev test');
     return 'I am dev test7';
+  }
+
+  @Get('dev/log')
+  getLog(): string {
+    const loggingWinston = new LoggingWinston();
+    const logger = winston.createLogger({
+      level: 'info',
+      transports: [
+        new winston.transports.Console(),
+        // Add Cloud Logging
+        loggingWinston,
+      ],
+    });
+    logger.error('warp nacelles offline');
+    logger.info('shields at 99%');
+    return 'I am log';
   }
 
   @Get('dead')
