@@ -32,7 +32,7 @@ export class AppController {
   @Get('dev/test')
   getHelloDevTest(): string {
     console.log('dev test');
-    return 'I am dev test6';
+    return 'I am dev test7';
   }
 
   @Get('dead')
