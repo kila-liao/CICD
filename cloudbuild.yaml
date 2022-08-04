@@ -32,6 +32,6 @@
     args:
     - run
     - --filename=k8s/prod.yaml
-    - --image=gcr.io/${PROJECT_ID}/demoimage:${COMMIT_SHA}"
+    - --image=demoimage=gcr.io/${PROJECT_ID}/demoimage:${COMMIT_SHA}"
     - --location=asia-east1-b
     - --cluster=demo-cluster
