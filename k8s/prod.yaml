@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: "demoapp"
-        image: "demoimage"
+        image: "gcr.io/cogent-spring-355606/demoimage"
         ports:
         - containerPort: 3000
         livenessProbe:
